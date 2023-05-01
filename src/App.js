@@ -3,6 +3,9 @@ import './App.css';
 
 import { AgGridReact } from 'ag-grid-react';
 
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+
 function App() {
 
   const rowData = [
@@ -13,13 +16,13 @@ function App() {
 
   const columnDefs = [
 
-    { field: 'make' },
+    { field: 'make', editable: true },
     { field: 'model' },
     { field: 'price' }
   ];
 
   return (
-    <div>
+    <div className='ag-theme-alpine' style={{ height: 500 }}>
       <AgGridReact 
         rowData={rowData}
         columnDefs={columnDefs}
