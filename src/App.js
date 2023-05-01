@@ -17,8 +17,7 @@ function App() {
   ]);
 
   const [columnDefs, setColumnDefs] = useState([
-
-    { field: 'make', editable: true },
+    { field: 'make', editable: true, sortable: true, filter: true },
     { field: 'model' },
     { field: 'price' }
   ]);
