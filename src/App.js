@@ -3,7 +3,7 @@ import './App.css';
 
 import { AgGridReact } from 'ag-grid-react';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -22,6 +22,13 @@ function App() {
     { field: 'model' },
     { field: 'price' }
   ]);
+
+  useEffect(() => {
+    fetch('https://www.ag-grid.com/example-assets/row-data.json')
+    .then(result => result.json())
+    .then(rowData => setRowData(rowData))
+    .catch(e => console.log(e))
+  }, [])
 
   return (
     <div className='ag-theme-alpine' style={{ height: 500 }}>
