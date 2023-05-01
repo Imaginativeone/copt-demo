@@ -3,23 +3,25 @@ import './App.css';
 
 import { AgGridReact } from 'ag-grid-react';
 
+import { useState } from 'react';
+
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 function App() {
 
-  const rowData = [
+  const [rowData, setRowData] = useState([
     { make: 'Ford', model: 'Focus', price: '40000'},
     { make: 'Toyota', model: 'Celica', price: '45000'},
     { make: 'BMW', model: '4 Series', price: '40000'}
-  ];
+  ]);
 
-  const columnDefs = [
+  const [columnDefs, setColumnDefs] = useState([
 
     { field: 'make', editable: true },
     { field: 'model' },
     { field: 'price' }
-  ];
+  ]);
 
   return (
     <div className='ag-theme-alpine' style={{ height: 500 }}>
