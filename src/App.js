@@ -19,6 +19,10 @@ function App() {
 		{ make: "BMW", model: "4 Series", price: "40000" }
 	]);
 
+  // const gridOptions = {
+  //   onCellContextMenu: (event) => console.log('Right-Clicked')
+  // }
+
 	const [columnDefs, setColumnDefs] = useState([
 		{ field: "make", editable: true, sortable: true, filter: true },
 		{ field: "model" },
@@ -47,12 +51,12 @@ function App() {
 				</Modal.Header>
 				<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
 				<Modal.Footer>
-					<div class="mb-3">
-						<label for="exampleFormControlTextarea1" class="form-label">
+					<div className="mb-3">
+						<label htmlFor="exampleFormControlTextarea1" className="form-label">
 							Example textarea
 						</label>
 						<textarea
-							class="form-control"
+							className="form-control"
 							id="exampleFormControlTextarea1"
 							rows="3"
 						></textarea>
