@@ -1,7 +1,6 @@
-// https://www.ag-grid.com/react-data-grid/cell-editing/
 import "./App.css";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -20,8 +19,22 @@ function App() {
 	]);
 
   // const gridOptions = {
-  //   onCellContextMenu: (event) => console.log('Right-Clicked')
+  //   // onCellContextMenu: (event) => console.log('Right-Clicked')
+  //   suppressContextMenu: true
   // }
+
+  // Suppress the JavaScript Context Menu
+  window.addEventListener("contextmenu", (e) => {e.preventDefault()});
+
+  const cellClickedListener = useCallback(e => {
+    console.log('Cell Clicked', e);
+  }, []);
+  
+  const cellRightClickedListener = useCallback(e => {
+    // e.preventDefault();
+    console.log('Cell Right Clicked', e);
+    handleShow();
+  }, []);
 
 	const [columnDefs, setColumnDefs] = useState([
 		{ field: "make", editable: true, sortable: true, filter: true },
@@ -70,7 +83,12 @@ function App() {
 				</Modal.Footer>
 			</Modal>
 			<div className="ag-theme-alpine" style={{ height: 500 }}>
-				<AgGridReact rowData={rowData} columnDefs={columnDefs} />
+				<AgGridReact 
+          rowData={rowData} 
+          columnDefs={columnDefs} 
+          onCellClicked = { cellClickedListener }
+          onCellContextMenu = { cellRightClickedListener }
+          />
 			</div>
 		</>
 	);
