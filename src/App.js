@@ -12,16 +12,39 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 function App() {
+
 	const [rowData, setRowData] = useState([
-		{ make: "Ford", model: "Focus", price: "40000" },
-		{ make: "Toyota", model: "Celica", price: "45000" },
-		{ make: "BMW", model: "4 Series", price: "40000" }
+		{ 
+      "ROFO/ROFR": "100", 
+      "Notification Data Sent": "4/10/2023", 
+      "Days to Respond": "15",
+      "Notification Delivered": "4/11/2023",
+      "Notification Response Deadline": "4/26/2023",
+      "Tenant Response Date": "",
+      "Tenant Response": "",
+      "ROFO/ROFR No...": ""
+    },
+		{ 
+      "ROFO/ROFR": "100", 
+      "Notification Data Sent": "4/20/2023", 
+      "Days to Respond": "10",
+      "Notification Delivered": "",
+      "Notification Response Deadline": "",
+      "Tenant Response Date": "",
+      "Tenant Response": "",
+      "ROFO/ROFR No...": ""
+    },
 	]);
 
 	const [columnDefs, setColumnDefs] = useState([
-		{ field: "make", editable: true, sortable: true, filter: true },
-		{ field: "model" },
-		{ field: "price" }
+		{ field: "ROFO/ROFR", editable: true, sortable: true, filter: true },
+		{ field: "Notification Data Sent" },
+		{ field: "Days to Respond" },
+		{ field: "Notification Delivered" },
+		{ field: "Notification Response Deadline" },
+		{ field: "Tenant Response Date" },
+		{ field: "Tenant Response" },
+		{ field: "ROFO/ROFR No..." },
 	]);
 
   // Suppress the JavaScript Context Menu
@@ -33,16 +56,8 @@ function App() {
   
   const cellRightClickedListener = useCallback(e => {
     console.log('Cell Right Clicked', e);
-
-    // example value getter, adds two fields together
-    // const cellData = columnDefs.valueGetter = params => {
-      // console.log(params.data);
-      // return params.data.firstName + params.data.lastName;
-    // }
-
     console.log(e.data); // Send this to the modal
-
-    handleShow();
+    handleShow(); // Present the modal (research useState arguments)
   }, []);
 
   // API Access Example
@@ -59,9 +74,6 @@ function App() {
 
 	return (
 		<>
-			{/* <Button variant="primary" onClick={handleShow}>
-				Launch demo modal
-			</Button> */}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Modal heading</Modal.Title>
