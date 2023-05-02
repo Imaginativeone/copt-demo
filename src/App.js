@@ -18,10 +18,11 @@ function App() {
 		{ make: "BMW", model: "4 Series", price: "40000" }
 	]);
 
-  // const gridOptions = {
-  //   // onCellContextMenu: (event) => console.log('Right-Clicked')
-  //   suppressContextMenu: true
-  // }
+	const [columnDefs, setColumnDefs] = useState([
+		{ field: "make", editable: true, sortable: true, filter: true },
+		{ field: "model" },
+		{ field: "price" }
+	]);
 
   // Suppress the JavaScript Context Menu
   window.addEventListener("contextmenu", (e) => {e.preventDefault()});
@@ -31,23 +32,26 @@ function App() {
   }, []);
   
   const cellRightClickedListener = useCallback(e => {
-    // e.preventDefault();
     console.log('Cell Right Clicked', e);
+
+    // example value getter, adds two fields together
+    // const cellData = columnDefs.valueGetter = params => {
+      // console.log(params.data);
+      // return params.data.firstName + params.data.lastName;
+    // }
+
+    console.log(e.data); // Send this to the modal
+
     handleShow();
   }, []);
 
-	const [columnDefs, setColumnDefs] = useState([
-		{ field: "make", editable: true, sortable: true, filter: true },
-		{ field: "model" },
-		{ field: "price" }
-	]);
-
-	useEffect(() => {
-		fetch("https://www.ag-grid.com/example-assets/row-data.json")
-			.then((result) => result.json())
-			.then((rowData) => setRowData(rowData))
-			.catch((e) => console.log(e));
-	}, []);
+  // API Access Example
+	// useEffect(() => {
+	// 	fetch("https://www.ag-grid.com/example-assets/row-data.json")
+	// 		.then((result) => result.json())
+	// 		.then((rowData) => setRowData(rowData))
+	// 		.catch((e) => console.log(e));
+	// }, []);
 
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
@@ -55,9 +59,9 @@ function App() {
 
 	return (
 		<>
-			<Button variant="primary" onClick={handleShow}>
+			{/* <Button variant="primary" onClick={handleShow}>
 				Launch demo modal
-			</Button>
+			</Button> */}
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
 					<Modal.Title>Modal heading</Modal.Title>
